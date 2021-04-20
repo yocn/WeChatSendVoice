@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yocn.af.view.widget.WeChatParentViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wechat_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_option"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp"
+            android:src="@drawable/ic_keyboard" />
+
+        <com.yocn.af.view.widget.WeChatVoiceTextView
+            android:id="@+id/tv_voice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_round"
+            android:gravity="center"
+            android:text="按住 说话"
+            android:textColor="@color/half_aa"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_face" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_add" />
+    </LinearLayout>
+
+    <com.yocn.af.view.widget.WeChatVoiceView
+        android:id="@+id/voice_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/half"
+        android:visibility="gone" />
+
+</com.yocn.af.view.widget.WeChatParentViewGroup>

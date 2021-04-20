@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="type" format="string" />
+
+    <declare-styleable name="WeChatVoiceBottomArc">
+        <attr name="type" />
+    </declare-styleable>
+
+</resources>

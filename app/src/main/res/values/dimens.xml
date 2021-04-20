@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="arc_height_light">180dp</dimen>
+    <dimen name="arc_height_dark">170dp</dimen>
+    <dimen name="height_round_rect">140dp</dimen>
+    <dimen name="height_trans">70dp</dimen>
+    <dimen name="height_top_divider">18dp</dimen>
+    <dimen name="height_triangle_line">20dp</dimen>
+
+</resources>

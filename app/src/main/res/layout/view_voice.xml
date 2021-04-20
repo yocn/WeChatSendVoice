@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/all"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.yocn.af.view.widget.WeChatVoiceBottomArc
+        android:id="@+id/bottom_arc_dark"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/arc_height_dark"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        app:type="dark" />
+
+    <com.yocn.af.view.widget.WeChatVoiceBottomArc
+        android:id="@+id/bottom_arc_light"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/arc_height_light"
+        android:layout_alignParentBottom="true"
+        android:translationY="@dimen/arc_height_light"
+        app:type="light" />
+
+    <TextView
+        android:id="@+id/voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_arc_light"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="松开 发送"
+        android:textColor="#e6e6e6"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_voice"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/ic_voice" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="@dimen/height_trans"
+        android:layout_height="@dimen/height_trans"
+        android:layout_above="@id/bottom_arc_light"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/bg_trans_oval"
+        android:gravity="center"
+        android:rotation="350"
+        android:text="✕"
+        android:textColor="@color/write"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_cancel_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_cancel"
+        android:layout_alignLeft="@id/tv_cancel"
+        android:layout_alignRight="@id/tv_cancel"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="松开 取消"
+        android:textColor="@color/write"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_trans"
+        android:layout_width="@dimen/height_trans"
+        android:layout_height="@dimen/height_trans"
+        android:layout_above="@id/bottom_arc_light"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/bg_trans_oval"
+        android:gravity="center"
+        android:rotation="10"
+        android:text="文"
+        android:textColor="@color/write"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_trans_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_trans"
+        android:layout_alignLeft="@id/tv_trans"
+        android:layout_alignRight="@id/tv_trans"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="转文字"
+        android:textColor="@color/write"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <com.yocn.af.view.widget.WeChatVoiceBubble
+        android:id="@+id/bubble"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_round_rect"
+        android:layout_above="@id/tv_cancel"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="100dp"/>
+
+</RelativeLayout>

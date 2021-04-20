@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/bg_window_drawable</item>
+
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="TransTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <!--        <item name="colorControlHighlight">@color/ControlHighlight</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@drawable/bg_window_drawable</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="WhiteTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/write</item>
+    </style>
+
+</resources>
