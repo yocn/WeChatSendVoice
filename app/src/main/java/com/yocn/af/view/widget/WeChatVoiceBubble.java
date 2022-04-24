@@ -2,10 +2,15 @@ package com.yocn.af.view.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -62,7 +67,11 @@ public class WeChatVoiceBubble extends View {
     private RectF currVoiceRectF;
     private RectF targetVoiceRectF;
     private boolean recording = true;
+    private boolean translating = false;
     private int controlSpeed = 0;
+    private TextPaint textPaint;
+    private StaticLayout myStaticLayout;
+    private String preMessage = "";
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({
@@ -95,6 +104,10 @@ public class WeChatVoiceBubble extends View {
     }
 
     private void init() {
+        textPaint = new TextPaint();
+        textPaint.setColor(Color.WHITE);
+        textPaint.setStyle(Paint.Style.FILL);
+        textPaint.setTextSize(50);
         greenPaint = new Paint();
         greenPaint.setAntiAlias(true);
         greenPaint.setColor(0xFF00cb32);
@@ -195,6 +208,26 @@ public class WeChatVoiceBubble extends View {
             canvas.drawLine(lineStartX + getLineStartX(i), centerLineY - currData[i] * 1f / 2,
                     lineStartX + getLineStartX(i), centerLineY + currData[i] * 1f / 2, writePaint);
         }
+
+        paintText(canvas);
+    }
+
+    private void paintText(Canvas canvas) {
+        if (!isSameRectRectF(translateRectF)) {
+            return;
+        }
+        canvas.translate(50, 30);
+        int width = canvas.getWidth() - 100;
+        String message = "你好，是一个汉语词语，拼音是nǐ hǎo，是汉语中打招呼的敬语常用词语";
+        getStaticLayout(message, width).draw(canvas);
+    }
+
+    private StaticLayout getStaticLayout(String message, int width) {
+        if (!TextUtils.equals(message, preMessage)) {
+            preMessage = message;
+            myStaticLayout = new StaticLayout(message, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        }
+        return myStaticLayout;
     }
 
     private int getLineStartX(int index) {
@@ -210,7 +243,7 @@ public class WeChatVoiceBubble extends View {
     }
 
     private void refreshRectRectF() {
-        if (!isSameRectRectF()) {
+        if (!isSameRectRectF(targetRectF)) {
             currRectF.top += deltaTopY;
             currRectF.left += deltaLeftX;
             currRectF.right += deltaRightX;
@@ -235,11 +268,11 @@ public class WeChatVoiceBubble extends View {
         }
     }
 
-    private boolean isSameRectRectF() {
-        if (targetRectF == null) {
+    private boolean isSameRectRectF(RectF tarRectF) {
+        if (tarRectF == null) {
             return true;
         }
-        return Math.abs((currRectF.right - currRectF.left) - (targetRectF.right - targetRectF.left)) < 10;
+        return Math.abs((currRectF.right - currRectF.left) - (tarRectF.right - tarRectF.left)) < 10;
     }
 
     private boolean isSameTriangleRectF() {
@@ -264,6 +297,7 @@ public class WeChatVoiceBubble extends View {
                 currPaint = greenPaint;
                 targetVoiceRectF = centerVoiceRectF;
                 recording = true;
+                translating = false;
                 break;
             case SHOW_TYPE.TYPE_CANCEL:
                 targetRectF = cancelRectF;
@@ -271,6 +305,7 @@ public class WeChatVoiceBubble extends View {
                 currPaint = redPaint;
                 targetVoiceRectF = cancelVoiceRectF;
                 recording = false;
+                translating = false;
                 break;
             case SHOW_TYPE.TYPE_TRANSLATE:
                 targetRectF = translateRectF;
@@ -278,6 +313,7 @@ public class WeChatVoiceBubble extends View {
                 currPaint = greenPaint;
                 targetVoiceRectF = translateVoiceRectF;
                 recording = false;
+                translating = true;
                 break;
             default:
         }
